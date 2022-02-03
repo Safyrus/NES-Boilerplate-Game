@@ -1,0 +1,16 @@
+# NES
+*.nes
+*.dbg
+*.deb
+
+# VSCode
+*.vscode/
+
+# Other files
+.markdownlint.json
+*ignore/
+dump_*.txt
+
+# Famistudio files
+*famistudio_ca65.s
+*famistudio_cc65.h
