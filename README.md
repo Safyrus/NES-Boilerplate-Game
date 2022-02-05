@@ -4,14 +4,14 @@ A NES game that serves as a base for starting a new NES project.
 
 -----------------
 
-- [**Features**](##-**Features**)
-- [**Prerequisite**](##-**Prerequisite**)
-- [**Project configuration**](##-**Project-configuration**)
-  - [**Source configuration**](###-**Source-configuration**)
-  - [**Makefile configuration**](###-**Makefile-configuration**)
-  - [**FamiStudio configuration**](###-**FamiStudio-configuration**)
-- [**Building the game**](##--**Building-the-game**)
-- [**Running the game**](##--**Running-the-game**)
+- [**Features**](#features)
+- [**Prerequisite**](#prerequisite)
+- [**Project configuration**](#project-configuration)
+  - [**Source configuration**](#source-configuration)
+  - [**Makefile configuration**](#makefile-configuration)
+  - [**FamiStudio configuration**](#famistudio-configuration)
+- [**Building the game**](#building-the-game)
+- [**Running the game**](#running-the-game)
 
 -----------------
 
