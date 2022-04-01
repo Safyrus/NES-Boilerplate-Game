@@ -87,7 +87,7 @@ To configure the sources files, you must:
     ```
 
 3. Rename the .cfg file to `your_game_name.cfg`.
-4. *(Optional)* If you want to use the MMMC5 mapper, rename the mmc5 .cfg file to `your_game_name_mmc5.cfg`. It must end with `_mmc5.cfg`.
+4. *(Optional)* If you want to use the MMC5 mapper, rename the mmc5 .cfg file to `your_game_name_mmc5.cfg`. It must end with `_mmc5.cfg`.
 5. *(Optional)* get the FamiStudio Sound Engine
     1. Place the `famistudio_ca65.s` file in `asm/audio/`
     *Note: if you are coding in C, you should include `famistudio_cc65.h` somewhere in your include folder*
