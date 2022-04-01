@@ -26,7 +26,7 @@
     ; Konami VRC7 (6 FM channels)
     FAMISTUDIO_EXP_VRC7          = 0
     ; Nintendo MMC5 (2 extra squares, extra DPCM not supported)
-    FAMISTUDIO_EXP_MMC5          = 0
+    FAMISTUDIO_EXP_MMC5          = MMC5
     ; Sunsoft S5B (2 extra squares, advanced features not supported.)
     FAMISTUDIO_EXP_S5B           = 0
     ; Famicom Disk System (extra wavetable channel)

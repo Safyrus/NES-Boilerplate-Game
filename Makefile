@@ -41,6 +41,9 @@ ASM = asm
 # Change this to 0 if you don't want FamiStudio
 FAMISTUDIO = 1
 
+# Change this to 1 if you want the MMC5 mapper
+MMC5 = 0
+
 
 # ! - - - - - - - - - - - - - - - - ! #
 #  DO NOT CHANGE ANYTHING AFTER THIS  #
@@ -74,17 +77,25 @@ $(GAME_NAME)_a.nes:
 # create folder if it does not exist
 	@-if not exist "$(BIN)" ( mkdir "$(BIN)" )
 # assemble main file
-	.\$(CA65) asm/crt0.asm -o $(BIN)/$(GAME_NAME).o --debug-info -DFAMISTUDIO=$(FAMISTUDIO)
+	.\$(CA65) asm/crt0.asm -o $(BIN)/$(GAME_NAME).o --debug-info -DFAMISTUDIO=$(FAMISTUDIO) -DMMC5=$(MMC5)
 # link files
+ifeq ($(MMC5),1)
+	.\$(LD65) $(BIN)/$(GAME_NAME).o -C $(GAME_NAME)_mmc5.cfg -o $(GAME_NAME)_a.nes --dbgfile $(GAME_NAME)_a.DBG
+else
 	.\$(LD65) $(BIN)/$(GAME_NAME).o -C $(GAME_NAME).cfg -o $(GAME_NAME)_a.nes --dbgfile $(GAME_NAME)_a.DBG
+endif
 
 
 # create the nes file from c sources
 $(GAME_NAME)_c.nes: $(addprefix $(BIN)/,$(SRCFILE:.c=.o))
 # assemble main file
-	$(CA65) $(ASM)/crt0.asm -g -o $(BIN)/$(GAME_NAME).o -I$(ASMINC) -DC_CODE -DFAMISTUDIO=$(FAMISTUDIO)
+	$(CA65) $(ASM)/crt0.asm -g -o $(BIN)/$(GAME_NAME).o -I$(ASMINC) -DC_CODE -DFAMISTUDIO=$(FAMISTUDIO) -DMMC5=$(MMC5)
 # link files
+ifeq ($(MMC5),1)
+	$(LD65) $(BIN)/$(GAME_NAME).o $^ -C $(GAME_NAME)_mmc5.cfg -o $@ $(NESLIB) --dbgfile $(GAME_NAME)_c.DBG
+else
 	$(LD65) $(BIN)/$(GAME_NAME).o $^ -C $(GAME_NAME).cfg -o $@ $(NESLIB) --dbgfile $(GAME_NAME)_c.DBG
+endif
 
 
 # assemble object files
@@ -92,7 +103,7 @@ $(BIN)/%.o: $(BIN)/%.asm
 # create folder if it does not exist
 	@-if not exist "$(@D)" ( mkdir "$(@D)" )
 # assemble a file
-	$(CA65) -g -I$(INC) -I$(ASMINC) -o $@ $^ -DC_CODE -DFAMISTUDIO=$(FAMISTUDIO)
+	$(CA65) -g -I$(INC) -I$(ASMINC) -o $@ $^ -DC_CODE -DFAMISTUDIO=$(FAMISTUDIO) -DMMC5=$(MMC5)
 
 
 # compile c files
@@ -100,7 +111,7 @@ $(BIN)/%.asm: %.c
 # create folder if it does not exist
 	@-if not exist "$(@D)" ( mkdir "$(@D)" )
 # compile a file
-	$(CC65) -O -g -I$(INC) -I$(ASM) -o $@ $^ $(NESLIB) --add-source
+	$(CC65) -O -g -I$(INC) -I$(ASM) -o $@ $^ $(NESLIB) --add-source -DFAMISTUDIO=$(FAMISTUDIO) -DMMC5=$(MMC5)
 
 
 # clean object files

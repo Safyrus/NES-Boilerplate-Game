@@ -4,8 +4,13 @@
 
 MAIN:
 .if FAMISTUDIO=1
+    .if MMC5=1
+    LDX #<music_data_arpeggio_mmc5 ; music data (lo)
+    LDY #>music_data_arpeggio_mmc5 ; music data (hi)
+    .else
     LDX #<music_data_arpeggio ; music data (lo)
     LDY #>music_data_arpeggio ; music data (hi)
+    .endif
     LDA #$01 ; NTSC
     JSR famistudio_init
 

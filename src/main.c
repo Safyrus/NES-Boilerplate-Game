@@ -1,26 +1,28 @@
 #include "constant.h"
 #include "zp_variables.h"
 #include "ram_variables.h"
+
+#if FAMISTUDIO 1
 #include "famistudio_cc65.h"
 
-// #pragma bss-name(push, "ZEROPAGE")
-
-// test variable in zeropage
-// uint8_t zeroPageVar;
-
-// #pragma bss-name(push, "BSS")
-
-// test variable in RAM
-// uint8_t ramVar;
-
+#if MMC5 1
+extern uint8_t music_data_arpeggio_mmc5[];
+#else
 extern uint8_t music_data_arpeggio[];
+#endif
+
+#endif
 
 void init()
 {
+#if FAMISTUDIO 1
+#if MMC5 1
+    famistudio_init(1, music_data_arpeggio_mmc5);
+#else
     famistudio_init(1, music_data_arpeggio);
+#endif
     famistudio_music_play(0);
-    // zeroPageVar = 0;
-    // ramVar = 0;
+#endif
 }
 
 void loop()
@@ -68,9 +70,7 @@ void loop()
     background[7] = 0x03;
     background[8] = 0x00;
 
-    // inc variables
-    // ++zeroPageVar;
-    // ++ramVar;
+    // inc variable
     ++game_state;
 }
 
@@ -83,7 +83,9 @@ void main()
         while ((nmi_flags & 0x80) == 0)
         {
         }
+#if FAMISTUDIO 1
         famistudio_update();
+#endif
 
         loop();
     }

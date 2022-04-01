@@ -46,6 +46,21 @@ RST:
     STA PPU_CTRL
     STA ppu_ctrl_val
 
+.if MMC5=1
+    ; - - - - - - -
+    ; setup MMC5
+    ; - - - - - - -
+    ; set $8000-9FFF to BNK 0
+    LDA #$80
+    STA MMC5_PRG_BNK0
+    ; set $A000-BFFF to BNK 1
+    LDA #$81
+    STA MMC5_PRG_BNK1
+    ; set $C000-DFFF to BNK 2
+    LDA #$82
+    STA MMC5_PRG_BNK2
+.endif
+
     CLI
 
 .ifdef C_CODE

@@ -26,8 +26,9 @@ This project has/can:
 - An IRQ handler (that does nothing, but we need one).
 - Support for the FamiStudio Sound Engine (<https://famistudio.org>)
 - Some defined constant (PPU, APU, etc.).
+- Compile the game with the MMC5 mapper. (<https://www.nesdev.org/wiki/MMC5>)
 
-Note: *This project has no mapper. i.e. it is a NROM game with 32K of PRG and 8K of CHR by default.*
+Note: *This project has by default 32K of PRG and 8K of CHR.*
 
 -----------------
 
@@ -86,7 +87,8 @@ To configure the sources files, you must:
     ```
 
 3. Rename the .cfg file to `your_game_name.cfg`.
-4. *(Optional)* get the FamiStudio Sound Engine
+4. *(Optional)* If you want to use the MMMC5 mapper, rename the mmc5 .cfg file to `your_game_name_mmc5.cfg`. It must end with `_mmc5.cfg`.
+5. *(Optional)* get the FamiStudio Sound Engine
     1. Place the `famistudio_ca65.s` file in `asm/audio/`
     *Note: if you are coding in C, you should include `famistudio_cc65.h` somewhere in your include folder*
     2. in the `crt0.asm` in the FamiStudio section, include your music files. Example:
@@ -198,10 +200,19 @@ You will need to indicate to the Makefile where cc65 and other software programs
     FAMISTUDIO = 1
     ```
 
+- **MMC5**: *(Required)*
+    If you want to use the MMC5 mapper for your game, set this to 1, otherwise set it to 0. Example:
+
+    ```make
+    MMC5 = 0
+    ```
+
 ### **FamiStudio configuration**
 
 You can configure the engine by editing `asm/audio/famistudio_config.asm`.
 If you need help, you can check the FamiStudio documentation: <https://famistudio.org/doc/soundengine>
+
+Note: *The 'FAMISTUDIO_EXP_MMC5' option is configured correctly by default. You do not need to change it*
 
 ## **Building the game**
 
