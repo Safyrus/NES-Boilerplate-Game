@@ -61,6 +61,7 @@
     palettes: .res 25
     .export _palettes=palettes
 
+    ; Index for the background data
     background_index: .res 1
     .export _background_index=background_index
 

@@ -68,6 +68,11 @@ extern uint8_t palettes[PALETTES_SIZE];
 #pragma zpsym ("palettes")
 
 
+// Index for the background data
+extern uint8_t background_index;
+#pragma zpsym ("background_index")
+
+
 // Background data to send to PPU during VBLANK
 // Packet structure:
 // byte 0   = v.ssssss (v= vertical draw, s= size)
