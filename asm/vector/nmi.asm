@@ -126,13 +126,13 @@ NMI:
         LDX #$00
         @attribute_loop:
             ; send 1 byte
-            INX
             LDA attributes, X
             STA PPU_DATA
+            INX
             ; send another byte
-            INX
             LDA attributes, X
             STA PPU_DATA
+            INX
             ; loop
             CPX #$40
             BNE @attribute_loop
