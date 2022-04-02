@@ -61,13 +61,16 @@
     palettes: .res 25
     .export _palettes=palettes
 
+    background_index: .res 1
+    .export _background_index=background_index
+
     ; Background data to send to PPU during VBLANK
     ; Packet structure:
     ; byte 0   = v.ssssss (v= vertical draw, s= size)
     ; byte 1-2 = ppu adress
     ; byte 3-s = tile data
     ; packet of size 0 means there is no more data to draw
-    background: .res 128
+    background: .res 127
     .export _background=background
 
 
