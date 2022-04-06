@@ -199,10 +199,9 @@ NMI:
         LDX scroll_y
         STX PPU_SCROLL
 
-        LDX #$00        ; set bit 15 of t in PPU to 0
-        STX PPU_ADDR     ; (because, for unknown reason)
-        LDX #$00        ; to fix scrolling in the wrong nametable.
-        STX PPU_ADDR
+        ; set high order bit of X and Y
+        LDA ppu_ctrl_val
+        STA PPU_CTRL
     @scroll_end:
 
     @done:
